@@ -1,0 +1,22 @@
+{
+  "scuola": [
+    {
+      "name": "Università degli Studi di Salerno",
+      "logo": "assets/img/partner-unisa.jpg",
+      "url": "https://web.unisa.it/home"
+    },
+    {
+      "name": "Dipartimento di Scienze Politiche e della Comunicazione · Università di Salerno",
+      "logo": "assets/img/partner-dispc.jpg",
+      "url": "https://www.dispc.unisa.it/"
+    },
+    {
+      "name": "Associazione Italiana di Sociologia",
+      "logo": "assets/img/partner-ais.jpg",
+      "url": "https://www.ais-sociologia.it"
+    }
+  ],
+  "magistri": [],
+  "marradi": [],
+  "incontri": []
+}

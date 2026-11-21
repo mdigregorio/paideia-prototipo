@@ -1,0 +1,47 @@
+[
+  {
+    "id": "newsletter-2026-11",
+    "title": "Newsletter Paideia · Novembre 2026",
+    "url": "newsletter-novembre-2026.html",
+    "category": "Newsletter",
+    "publishedAt": "2026-11-21",
+    "demo": true,
+    "excerpt": "Un esempio di numero della newsletter: appuntamenti, formazione e notizie dalla comunità."
+  },
+  {
+    "id": "ricordo-marradi",
+    "title": "In ricordo di Alberto Marradi",
+    "url": "in-ricordo-di-alberto-marradi.html",
+    "category": "Memoria di Paideia",
+    "publishedAt": "2026-11-21",
+    "demo": false,
+    "excerpt": "Il ricordo di Alberto Marradi, fondatore e presidente onorario di Paideia."
+  },
+  {
+    "id": "scuola-2026",
+    "title": "Il programma della Scuola Estiva 2026",
+    "url": "scuola-estiva/edizione-2026.html",
+    "category": "Formazione",
+    "publishedAt": "2026-11-21",
+    "demo": false,
+    "excerpt": "Corsi, docenti e locandina PDF dell’edizione 2026. Scheda aggiornata nel prototipo."
+  },
+  {
+    "id": "progetto-demo",
+    "title": "Metodologia e formazione: un progetto condiviso",
+    "url": "articolo.html",
+    "category": "Progetti",
+    "publishedAt": "2026-11-20",
+    "demo": true,
+    "excerpt": "Un articolo dimostrativo associato a più persone e a un’iniziativa."
+  },
+  {
+    "id": "newsletter-2026-10",
+    "title": "Newsletter Paideia · Ottobre 2026",
+    "url": "newsletter-ottobre-2026.html",
+    "category": "Newsletter",
+    "publishedAt": "2026-10-21",
+    "demo": true,
+    "excerpt": "Numero precedente di esempio per mostrare l’archivio datato delle newsletter."
+  }
+]

@@ -86,11 +86,13 @@ window.PAIDEIA_MEMBERS = {
     "url": "https://romecenter.uark.edu/faculty-in-rome/cmariotti.php"
   },
   "Alberto Marradi": {
+    "role": "Fondatore e presidente onorario di Paideia",
+    "info": "Fondatore e presidente onorario di Paideia, ideatore della Scuola Estiva sul Metodo e la Ricerca Sociale.",
     "url": "https://flore.unifi.it/cris/rp/rp12187",
     "deceased": true
   },
   "Fabrizio Martire": {
-    "url": "https://corsidilaurea.uniroma1.it/",
+    "url": "https://corsidilaurea.uniroma1.it/it/lecturer/6d981ff3fb8ebd96693a4b9803a323afa03e7f78d458062688797be9",
     "info": "Professore ordinario di Sociologia presso Sapienza Università di Roma. Componente del comitato scientifico della Scuola Estiva."
   },
   "Beba Molinari": {
@@ -134,7 +136,7 @@ window.PAIDEIA_MEMBERS = {
   "Gabriella Punziano": {
     "url": "https://www.docenti.unina.it/gabriella.punziano",
     "role": "Direttrice di Paideia",
-    "info": "Professoressa associata presso l’Università degli Studi di Napoli Federico II; direttrice di Paideia e co-responsabile della Scuola Estiva."
+    "info": "Professoressa associata presso l’Università degli Studi di Napoli Federico II; direttrice di Paideia."
   },
   "Francesco Sacchetti": {
     "url": "https://www.uniurb.it/persone/francesco-sacchetti"

@@ -1,50 +1,57 @@
-# Paideia — prototipo statico del sito unico
+# Paideia prototipo del sito unico
 
-Prototipo navigabile di struttura e funzionalità **senza backend**, preparato per la discussione con il programmatore. È **un progetto nuovo e separato** dal sito attuale; il repository `mdigregorio/paideiacultura-site` è stato consultato **solo in lettura** e non viene modificato.
+Prototipo statico navigabile, pubblicato esclusivamente in **mdigregorio/paideia-prototipo**. Il repository `mdigregorio/paideiacultura-site` è una fonte in sola lettura.
 
-## Avvio
+Il [report dell’audit](AUDIT.md) distingue le richieste completate dai materiali ancora da consegnare e dai limiti di verifica.
 
-Aprire `index.html` con un browser. Non servono Node, Python, server o collegamento Internet. Tutti i percorsi sono relativi e funzionano anche in GitHub Pages sotto `/paideia-prototipo/`.
+## Consultazione
 
-## Pagine
+Sito: <https://mdigregorio.github.io/paideia-prototipo/>
 
-- **Home**, associazione, soci e profili, notizie e un articolo collegato a più soci.
-- **Scuola Estiva** come microsito interno: presentazione, edizione 2026, scheda di corso, sedi e galleria; menu proprio.
-- **Incontri sul metodo**: convegno ricorrente *inventato per la demo*, con una giornata e tre interventi per edizione.
-- **Il metodo come arte – In ricordo di Alberto Marradi**: giornata di studi autonoma (12 dicembre 2026, 10:00–15:00, Aula Magna dell'Università degli Studi di Firenze, Via Laura 48). Programma e relatori sono ancora da definire, e le voci presenti servono solo come segnaposto.
-- **Archivio**: alternanza tra `Edizioni` (filtri `Iniziativa`, `Anno`) e `Corsi e interventi` (filtri `Iniziativa`, `Edizione`). Dalla Home i filtri sono vuoti; da ciascuna area il filtro Iniziativa viene preselezionato ma resta modificabile.
-- **Area personale**: dimostrazione di login, iscrizioni, stato di pagamento, questionario, materiali e attestato. Non c'è autenticazione reale o salvataggio.
+Le 37 pagine usano HTML, CSS e JavaScript senza dipendenze. Si può aprire `index.html` anche localmente. Per controllare i percorsi come nel sito pubblicato è preferibile un server statico, ad esempio `python -m http.server 4173` dalla cartella del progetto. Le fotografie della Scuola richiedono il collegamento al suo dominio ufficiale.
 
-### Accesso dimostrativo
+## Pagine e contenuti
 
-- E-mail: `demo@paideia.test`
-- Password: `prototipo`
+- Home, Chi siamo e manifesto, Soci con Direttivo attuale e Direttivi 2015–2018 e 2012–2015, profili, formazione, convegni, progetti e iniziative.
+- Articolo **In ricordo di Alberto Marradi**, con il testo fornito integralmente e conservato anche in `data/ricordo-marradi.txt`. Galleria commemorativa in attesa di foto e video.
+- Micrositi Scuola Estiva, Magistri sine registro, Incontri sul metodo e giornata di studi Il metodo come arte. Barra Paideia e breadcrumb scuri sticky, intestazione propria, menu mobile a scomparsa e footer comune.
+- Scuola: edizione 2026 con sei corsi e PDF locale, scheda di corso, staff con Giovanni Di Franco, sedi, galleria, regolamento, contatti e iscrizione dimostrativa.
+- Newsletter come articoli nella categoria Newsletter, pubblicate anche nelle Notizie e raccolte nell’archivio datato. Home con «Leggi ultima newsletter» e iscrizione demo.
+- Contatti istituzionali e pagine dimostrative Privacy, Cookie e Copyright.
 
-Le credenziali sono pubbliche e fittizie, e il controllo avviene solo in JavaScript nel browser. **Non usare questo meccanismo in un sito reale.**
+## Archivio
 
-## Dati reali e dati dimostrativi
+`data/catalogo-formazione.json` è una copia integrale del catalogo istituzionale consultato il 21 novembre 2026: **60 edizioni e 201 moduli**. Non è un collegamento al database futuro.
 
-- La presentazione generale di Paideia e i dati sintetici della Scuola Estiva 2026 sono ispirati a fonti pubbliche dell'associazione. Per corsi, date e docenti della Scuola 2026: https://www.paideiascuoleestive.it/corsi e https://www.paideiascuoleestive.it/scuola.
-- `Incontri sul metodo`, i suoi programmi, i nomi di esempio dei soci, i relativi profili e gli articoli sono inventati esclusivamente per il prototipo.
-- I dettagli della giornata di studi dedicata ad Alberto Marradi provengono dalle informazioni fornite per questa simulazione. Gli orari delle singole parti del programma e i nomi dei relatori sono da definire.
-- L'archivio del prototipo è un campione esplicativo, non l'archivio completo dell'associazione. Il sito originale contiene uno storico molto più esteso.
-- Nessuna immagine o file storico del repository originale è stato copiato in questo prototipo.
+Il comando di preparazione genera due file: `assets/catalogo-edizioni.js` (13.287 byte) e `assets/catalogo-corsi.js` (61.652 byte). Solo il secondo viene caricato quando si apre la vista Corsi e interventi. Il catalogo iniziale precedente era di 75.729 byte. Nessun caricamento del catalogo nelle altre pagine.
 
-## Limiti e ambito
+- **Edizioni**: filtri Iniziativa e Anno.
+- **Corsi e interventi**: filtri Iniziativa ed Edizione.
+- 24 risultati iniziali, poi «Mostra altre voci».
+- Collegamenti diretti con `iniziativa`, `vista`, `anno` o `edizione`.
+- Dati mancanti espliciti e indicazione «Da verificare» conservata. Un titolo nullo viene mostrato come «Titolo non disponibile».
+- Le cinque edizioni e i sei interventi delle altre iniziative sono distinti dai 60/201 record formativi; senza filtri si vedono quindi 65 edizioni o 207 corsi/interventi.
 
-HTML, CSS e JavaScript nativi, nessuna dipendenza, nessun database. Non esegue iscrizioni, pagamenti, invii e-mail, recuperi password o verifiche di consenso. Le parti riservate sono dimostrative e non protette. Le scelte visive sono segnaposto, in attesa della progettazione grafica.
+## Aggiornamenti e controlli
 
-## Pubblicazione in nuovo repository
+```text
+node scripts/build.mjs
+node scripts/verify.mjs
+```
 
-Creare un **nuovo** repository GitHub, ad esempio `mdigregorio/paideia-prototipo`, e caricarvi i file contenuti nella cartella. Per GitHub Pages scegliere `Settings` → `Pages` → `Deploy from a branch`, poi `main` e `/ (root)`. Il repository esistente `mdigregorio/paideiacultura-site` deve rimanere invariato.
+`scripts/build.mjs` aggiorna i file del catalogo, i menu, il footer, i riquadri delle Notizie, l’ultima newsletter e gli spazi partner. Non richiede accesso alla rete e non pubblica nulla autonomamente.
 
-## Revisione della navigazione e dei contenuti (novembre 2026)
+- Modificare i modelli in `templates/` per il footer o i menu condivisi.
+- Per una newsletter, creare l’articolo HTML e aggiungere i suoi metadati in `data/news.json` con categoria `Newsletter`, data e indicazione demo. Ricostruire: comparirà anche in Notizie, nell’archivio e come ultimo numero se più recente.
+- Aggiungere i partner verificati in `data/partners.json`, con nome, logo locale e URL ufficiale. Gli spazi senza materiali restano privi di collegamenti fittizi.
+- Aggiornare il catalogo solo da una fonte validata. Il controllo attuale richiede 60/201 record e relazioni valide; modificare tale vincolo solo per un aggiornamento reale del catalogo.
 
-- Menu globale: Home, Chi siamo, Soci, Formazione, Convegni, Progetti e altre iniziative, Notizie, Area personale. L’archivio è raggiungibile dai riquadri dedicati, non dal menu principale.
-- `iniziative.html`: mostra soltanto iniziative in corso o programmate; le tre pagine per categoria mostrano anche iniziative concluse.
-- Scuola Estiva, Magistri sine registro, Incontri sul metodo e Giornata Marradi utilizzano menu specifici che sostituiscono la navigazione generale. Il footer è comune.
-- `associazione.html#manifesto`: manifesto storico completo, trascritto dal repository `paideiacultura-site` (solo lettura). `soci.html`: elenco dei 50 soci dal medesimo repository, con segnalazione di profili ancora da completare.
-- La Scuola include staff, slideshow e galleria. Le immagini sono **caricate dal dominio storico della Scuola**: la loro visualizzazione richiede connessione Internet e la disponibilità di quel sito. Nel progetto definitivo andranno migrate con autorizzazione e relative attribuzioni.
-- Il programma 2027 è presentato come *in definizione* ai soli fini dell'esempio; non viene comunicata alcuna apertura di iscrizioni effettive.
-- Fonti: `https://github.com/mdigregorio/paideiacultura-site`, `https://www.paideiascuoleestive.it/scuola`, `/staff`, `/borghi`, `/esperienze`, `https://www.paideiacultura.it/le-nostre-scuole-e-iniziative/`.
-- La voce «Incontri sul metodo» rimane un **convegno fittizio** indicato come tale. Le persone usate nelle vecchie schede di esempio sono fittizie.
+`scripts/verify.mjs` controlla link e ancore locali, footer, menu, testo commemorativo, PDF, catalogo, newsletter e comportamento dei filtri/caricamenti. I controlli delle interazioni usano il codice effettivo con controlli simulati in Node; non sostituiscono una verifica grafica nel browser.
+
+## Dati dimostrativi
+
+Incontri sul metodo e i vecchi profili di esempio sono fittizi e segnalati. I numeri della newsletter e le loro date sono dimostrativi. La pagina memoriale non è un testo inventato. La giornata Marradi è distinta dall’articolo commemorativo.
+
+Accesso demo: `demo@paideia.test` / `prototipo`. Non esistono autenticazione protetta, database, invii e-mail, iscrizioni, pagamenti o attestati validi. La compilazione dei moduli cambia soltanto l’interfaccia aperta. Privacy, Cookie e Copyright sono pagine dimostrative da completare per i servizi effettivi.
+
+I loghi della Scuola e dei suoi partner sono copie delle immagini ufficiali. I social sono collegamenti testuali attestati dalle pagine ufficiali; nessun widget incorporato. Instagram e LinkedIn istituzionale non sono aggiunti in assenza di una fonte affidabile.
