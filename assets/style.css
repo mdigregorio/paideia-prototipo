@@ -54,3 +54,83 @@ body[data-area] .breadcrumbs{font-size:.76rem;padding:9px 0}
 @media(max-width:980px){.school-hero-grid{grid-template-columns:1fr}.primary-nav a{font-size:.84rem}.member-directory{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.member-directory{grid-template-columns:1fr}.manifesto{padding:18px}.slides{height:240px}.microsite-header .brand{margin-bottom:0}}
 @media(prefers-reduced-motion:reduce){.slide{transition:none}}
+
+
+/* Layout v3 micrositi: barra Paideia e navigazione locale fisse insieme. */
+.site-header.microsite-header{
+  position:sticky;
+  top:0;
+  z-index:70;
+  background:var(--microsite-surface,#f7f7f4);
+  box-shadow:0 5px 14px rgba(25,38,50,.10);
+}
+body[data-area="scuola"]{--microsite-surface:#f0f3e9;--microsite-divider:#c2d2bc;--microsite-title:#294932}
+body[data-area="magistri"]{--microsite-surface:#f6eef5;--microsite-divider:#d6c0d7;--microsite-title:#613d65}
+body[data-area="incontri"]{--microsite-surface:#f0f2f8;--microsite-divider:#bfcae0;--microsite-title:#374867}
+body[data-area="marradi"]{--microsite-surface:#f7eef2;--microsite-divider:#d9c3ce;--microsite-title:#6b3f50}
+.microsite-header .microsite-topbar{background:#233344;color:#e5eced}
+.microsite-topbar-inner{
+  min-height:56px;display:flex;align-items:center;justify-content:space-between;gap:24px;
+}
+.microsite-topbar .paideia-mini-brand{
+  flex-shrink:0;color:#fff;margin:0;gap:9px;
+}
+.microsite-topbar .brand-mark{
+  width:31px;height:31px;border-color:#ced8dc;color:#fff;font-size:1.25rem;
+}
+.microsite-topbar .brand-name{color:#fff;font-size:1.1rem}
+.microsite-topbar .brand-sub{color:#cbd7dc;font-size:.56rem}
+.microsite-topbar .microsite-crumbs{
+  padding:8px 0;margin:0;color:#e9f0f2;text-align:right;
+  font-size:.79rem;line-height:1.4;
+}
+.microsite-crumbs a{color:#e9f0f2}
+.microsite-mainbar{background:var(--microsite-surface);border-bottom:2px solid var(--microsite-divider)}
+.microsite-mainbar-inner{min-height:84px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:10px 0}
+.microsite-header .initiative-brand{
+  display:flex;gap:11px;align-items:center;flex:0 0 auto;max-width:310px;
+  color:var(--microsite-title);text-decoration:none;margin:0;white-space:normal;
+}
+.initiative-emblem{
+  width:50px;height:50px;flex:0 0 50px;display:grid;place-items:center;
+  border:1px solid var(--microsite-divider);background:#fff9;
+}
+.initiative-emblem.emblem-letter{font:italic 2.1rem var(--serif)}
+.official-school-mark{border-color:#98b99d;background:#fff}
+.school-logo-symbol{font:700 1.3rem var(--serif);color:#45683c;letter-spacing:-.08em}
+.initiative-wordmark{display:block;min-width:0}
+.initiative-wordmark strong{
+  display:block;font:600 clamp(1.12rem,1.9vw,1.5rem)/1.08 var(--serif);color:var(--microsite-title)
+}
+.initiative-wordmark small{
+  display:block;margin-top:4px;font-size:.68rem;line-height:1.25;color:var(--microsite-title)
+}
+.microsite-header .microsite-nav{justify-content:flex-end;gap:8px 13px;min-width:0;flex-wrap:wrap}
+.microsite-header .microsite-nav a{
+  padding:8px 0;color:var(--microsite-title);font-size:.8rem;
+  font-weight:650;border-bottom:2px solid transparent;white-space:nowrap;text-decoration:none
+}
+.microsite-header .microsite-nav a:hover,
+.microsite-header .microsite-nav a[aria-current="page"]{
+  color:var(--microsite-title);border-bottom-color:var(--accent)
+}
+.microsite-header .microsite-nav a[href$="area-personale.html"]{
+  padding:8px 10px;border:1px solid var(--microsite-divider);border-radius:3px
+}
+@media(max-width:1100px){
+  .microsite-mainbar-inner{align-items:flex-start;flex-direction:column;gap:5px;padding-bottom:0}
+  .microsite-header .microsite-nav{
+    width:100%;justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;
+    gap:18px;scrollbar-width:thin;-webkit-overflow-scrolling:touch;padding-bottom:6px
+  }
+  .microsite-header .microsite-nav a{flex-shrink:0}
+}
+@media(max-width:520px){
+  .microsite-topbar-inner{min-height:54px;gap:12px}
+  .microsite-topbar .brand-sub{display:none}
+  .microsite-topbar .brand-name{font-size:.95rem}
+  .microsite-topbar .microsite-crumbs{font-size:.67rem}
+  .initiative-emblem{width:42px;height:42px;flex-basis:42px}
+  .initiative-wordmark strong{font-size:1.22rem}
+  .initiative-wordmark small{font-size:.62rem}
+}
