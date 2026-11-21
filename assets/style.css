@@ -148,7 +148,7 @@ body[data-area="marradi"]{--microsite-surface:#f7eef2;--microsite-divider:#d9c3c
 .microsite-topbar .microsite-crumbs{font-size:.875rem}
 .microsite-mainbar-inner{align-items:center;flex-direction:row;flex-wrap:nowrap;gap:22px}
 .microsite-header .microsite-nav{flex-wrap:wrap;overflow:visible;padding:0;gap:2px 16px;justify-content:flex-end}
-.site-footer .footer-grid{grid-template-columns:1.65fr 1fr 1.1fr 1fr;gap:30px}
+.site-footer .footer-grid{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr) minmax(0,1fr);gap:32px}
 .site-footer h2{font:700 1rem var(--sans);margin:0 0 17px}
 .site-footer ul{list-style:none;padding:0;margin:0}
 .site-footer li{margin:6px 0}
@@ -157,8 +157,20 @@ body[data-area="marradi"]{--microsite-surface:#f7eef2;--microsite-divider:#d9c3c
 .site-footer .brand-sub{font-size:.875rem;line-height:1.4}
 .site-footer p,.site-footer address{font-size:.9375rem;line-height:1.65}
 .site-footer address{font-style:normal}
+.site-footer .footer-social-link{display:inline-flex;align-items:center;gap:9px;min-height:36px}
+.footer-social-link svg{flex:none}
+.footer-social-group + .footer-social-group{margin-top:12px}
 .footer-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:.875rem}
 .reading-width{max-width:1000px}
+.legal-content{max-width:76ch}
+.legal-content section + section{margin-top:40px;padding-top:32px;border-top:1px solid var(--line)}
+.legal-content section[id]{scroll-margin-top:0}
+.legal-content h3{margin-top:24px}
+.legal-content li + li{margin-top:10px}
+.legal-index{border-bottom:1px solid var(--line);padding-bottom:22px;margin-bottom:35px}
+.legal-index ul{display:flex;flex-wrap:wrap;gap:10px 22px;list-style:none;padding:0;margin:0}
+.legal-index li + li{margin-top:0}
+.legal-content address{font-style:normal}
 .memorial-text{max-width:72ch;font-size:1.125rem;line-height:1.85}
 .memorial-callout{margin:30px 0;padding:24px;border-left:4px solid var(--accent);background:var(--accent-light)}
 .memorial-callout h2{font-size:1.7rem}
@@ -191,7 +203,6 @@ html{scroll-padding-top:185px}
  .primary-nav,.microsite-header .microsite-nav{flex-basis:100%;width:100%;justify-content:flex-start;gap:0;flex-direction:column;align-items:stretch;overflow-y:auto;overflow-x:hidden;max-height:calc(100dvh - 170px);padding:8px 0;border-top:1px solid #a6b5af}
  .primary-nav a,.microsite-header .microsite-nav a{padding:11px 8px;border-bottom:1px solid #d1d9d4;min-height:46px;font-size:1rem;white-space:normal}
  .primary-nav .nav-account,.microsite-header .microsite-nav a[href$="area-personale.html"]{margin-top:8px;padding:11px 8px}
- .site-footer .footer-grid{grid-template-columns:1.6fr 1fr;gap:32px}
 }
 @media(max-width:700px){
  .site-footer .footer-grid{grid-template-columns:1fr}

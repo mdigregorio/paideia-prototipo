@@ -17,7 +17,7 @@ Le 37 pagine usano HTML, CSS e JavaScript senza dipendenze. Si può aprire `inde
 - Micrositi Scuola Estiva, Magistri sine registro, Incontri sul metodo e giornata di studi Il metodo come arte. Barra Paideia e breadcrumb scuri sticky, intestazione propria, menu mobile a scomparsa e footer comune.
 - Scuola: edizione 2026 con sei corsi e PDF locale, scheda di corso, staff con Giovanni Di Franco, sedi, galleria, regolamento, contatti e iscrizione dimostrativa.
 - Newsletter come articoli nella categoria Newsletter, pubblicate anche nelle Notizie e raccolte nell’archivio datato. Home con «Leggi ultima newsletter» e iscrizione demo.
-- Contatti istituzionali e pagine dimostrative Privacy, Cookie e Copyright.
+- Contatti istituzionali e pagina unica «Privacy e note legali», con informativa, cookie e diritto d’autore per il futuro sito. Il footer collega anche il Manifesto e l’archivio delle iniziative.
 
 ## Archivio
 
@@ -52,6 +52,6 @@ node scripts/verify.mjs
 
 Incontri sul metodo e i vecchi profili di esempio sono fittizi e segnalati. I numeri della newsletter e le loro date sono dimostrativi. La pagina memoriale non è un testo inventato. La giornata Marradi è distinta dall’articolo commemorativo.
 
-Accesso demo: `demo@paideia.test` / `prototipo`. Non esistono autenticazione protetta, database, invii e-mail, iscrizioni, pagamenti o attestati validi. La compilazione dei moduli cambia soltanto l’interfaccia aperta. Privacy, Cookie e Copyright sono pagine dimostrative da completare per i servizi effettivi.
+Accesso demo: `demo@paideia.test` / `prototipo`. Non esistono autenticazione protetta, database, invii e-mail, iscrizioni, pagamenti o attestati validi. La compilazione dei moduli cambia soltanto l’interfaccia aperta. La pagina «Privacy e note legali» è una bozza da completare in base ai servizi che saranno attivati sul sito definitivo.
 
 I loghi della Scuola e dei suoi partner sono copie delle immagini ufficiali. I social sono collegamenti testuali attestati dalle pagine ufficiali; nessun widget incorporato. Instagram e LinkedIn istituzionale non sono aggiunti in assenza di una fonte affidabile.

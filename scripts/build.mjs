@@ -6,7 +6,7 @@ const read=p=>fs.readFile(path.join(root,p),'utf8');
 const write=(p,s)=>fs.writeFile(path.join(root,p),s);
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const date=s=>new Intl.DateTimeFormat('it-IT',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(s+'T12:00:00Z'));
-const footer=await read('templates/footer.html');
+const footer=(await read('templates/footer.html')).trimEnd();
 const mainNav=await read('templates/nav-main.html');
 const schoolNav=await read('templates/nav-school.html');
 const news=JSON.parse(await read('data/news.json')).sort((a,b)=>b.publishedAt.localeCompare(a.publishedAt));

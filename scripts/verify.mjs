@@ -18,17 +18,28 @@ async function walk(dir=''){
 const files=await walk();
 const pages=new Map(await Promise.all(files.map(async p=>[p,await read(p)])));
 const ids=new Map([...pages].map(([p,h])=>[p,[...h.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1])]));
+const legalRedirects=new Map([
+ ['cookie.html','privacy.html#cookie'],
+ ['copyright.html','privacy.html#note-legali'],
+]);
+const footerTemplate=(await read('templates/footer.html')).trimEnd();
 let internalLinks=0;
 for(const [p,h] of pages){
  const pageIds=ids.get(p);assert.equal(new Set(pageIds).size,pageIds.length,'ID duplicato: '+p);
  assert.equal((h.match(/<h1\b/g)||[]).length,1,'Una sola intestazione principale: '+p);
- assert.equal((h.match(/data-menu-toggle/g)||[]).length,1,'Menu accessibile: '+p);
+ if(legalRedirects.has(p)){
+  const target=legalRedirects.get(p);
+  assert(h.includes(`http-equiv="refresh" content="0; url=${target}"`),'Reindirizzamento legale: '+p);
+  assert(h.includes(`href="${target}"`),'Link alternativo: '+p);
+ }else{
+  assert.equal((h.match(/data-menu-toggle/g)||[]).length,1,'Menu accessibile: '+p);
+  const prefix='../'.repeat(p.split('/').length-1);
+  const footer=h.match(/<footer class="site-footer">[\s\S]*?<\/footer>/)?.[0];
+  assert.equal(footer,footerTemplate.replaceAll('{{root}}',prefix),'Footer comune: '+p);
+ }
  assert(!h.includes('school-logo-symbol'),'Segnaposto SE: '+p);
  assert(!h.includes('Programma sul sito attuale'),'Vecchio link programma: '+p);
  assert(!h.includes('Fonte dei dati.'),'Nota fonte nella UI: '+p);
- const prefix='../'.repeat(p.split('/').length-1);
- const footer=h.match(/<footer class="site-footer">[\s\S]*?<\/footer>/)?.[0];
- assert.equal(footer,(await read('templates/footer.html')).replaceAll('{{root}}',prefix),'Footer comune: '+p);
  if(p!=='archivio.html')assert(!/src="[^\"]*catalogo-/.test(h),'Catalogo caricato fuori archivio: '+p);
  for(const m of h.matchAll(/\b(?:href|src)="([^"]+)"/g)){
   const u=m[1].replaceAll('&amp;','&');
@@ -41,7 +52,7 @@ for(const [p,h] of pages){
   if(url.hash&&ids.has(target))assert(ids.get(target).includes(decodeURIComponent(url.hash.slice(1))),`Ancora mancante: ${p} -> ${u}`);
  }
 }
-checks.push(`${files.length} pagine, ${internalLinks} link/risorse interni, footer e menu su tutte le pagine`);
+checks.push(`${files.length-legalRedirects.size} pagine con footer e menu comuni, ${legalRedirects.size} reindirizzamenti, ${internalLinks} link/risorse interni`);
 const article=pages.get('in-ricordo-di-alberto-marradi.html');
 const exact=(await read('data/ricordo-marradi.txt')).trim().split('\n');
 const title=article.match(/data-memorial-title>([\s\S]*?)<\/h1>/)[1].replace(/<br\s*\/?>/g,'\n');
