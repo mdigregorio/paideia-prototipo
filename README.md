@@ -37,3 +37,14 @@ HTML, CSS e JavaScript nativi, nessuna dipendenza, nessun database. Non esegue i
 ## Pubblicazione in nuovo repository
 
 Creare un **nuovo** repository GitHub, ad esempio `mdigregorio/paideia-prototipo`, e caricarvi i file contenuti nella cartella. Per GitHub Pages scegliere `Settings` → `Pages` → `Deploy from a branch`, poi `main` e `/ (root)`. Il repository esistente `mdigregorio/paideiacultura-site` deve rimanere invariato.
+
+## Revisione della navigazione e dei contenuti (novembre 2026)
+
+- Menu globale: Home, Chi siamo, Soci, Formazione, Convegni, Progetti e altre iniziative, Notizie, Area personale. L’archivio è raggiungibile dai riquadri dedicati, non dal menu principale.
+- `iniziative.html`: mostra soltanto iniziative in corso o programmate; le tre pagine per categoria mostrano anche iniziative concluse.
+- Scuola Estiva, Magistri sine registro, Incontri sul metodo e Giornata Marradi utilizzano menu specifici che sostituiscono la navigazione generale. Il footer è comune.
+- `associazione.html#manifesto`: manifesto storico completo, trascritto dal repository `paideiacultura-site` (solo lettura). `soci.html`: elenco dei 50 soci dal medesimo repository, con segnalazione di profili ancora da completare.
+- La Scuola include staff, slideshow e galleria. Le immagini sono **caricate dal dominio storico della Scuola**: la loro visualizzazione richiede connessione Internet e la disponibilità di quel sito. Nel progetto definitivo andranno migrate con autorizzazione e relative attribuzioni.
+- Il programma 2027 è presentato come *in definizione* ai soli fini dell'esempio; non viene comunicata alcuna apertura di iscrizioni effettive.
+- Fonti: `https://github.com/mdigregorio/paideiacultura-site`, `https://www.paideiascuoleestive.it/scuola`, `/staff`, `/borghi`, `/esperienze`, `https://www.paideiacultura.it/le-nostre-scuole-e-iniziative/`.
+- La voce «Incontri sul metodo» rimane un **convegno fittizio** indicato come tale. Le persone usate nelle vecchie schede di esempio sono fittizie.
