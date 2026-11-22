@@ -198,8 +198,7 @@ body[data-area="marradi"]{--microsite-surface:#f7eef2;--microsite-divider:#d9c3c
 .footer-social-link svg{flex:none}
 .footer-social-group + .footer-social-group{margin-top:12px}
 .footer-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:.875rem}
-.reading-width{max-width:1000px}
-.legal-content{max-width:76ch}
+.reading-width{max-width:76ch}
 .legal-content section + section{margin-top:40px;padding-top:32px;border-top:1px solid var(--line)}
 .legal-content section[id]{scroll-margin-top:0}
 .legal-content h3{margin-top:24px}
