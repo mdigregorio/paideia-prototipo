@@ -229,6 +229,14 @@ body[data-area="marradi"]{--microsite-surface:#f7eef2;--microsite-divider:#d9c3c
 .archive-details{margin-top:18px}
 .archive-details summary{cursor:pointer;font-weight:650;padding:8px 0}
 .archive-details-content{padding-top:10px}
+.archive-search { margin-bottom: 18px; }
+.archive-search-row { display: flex; gap: 10px; }
+.archive-search-row input { min-width: 0; }
+.archive-search-row .btn { flex-shrink: 0; }
+.archive-search p { margin: 0; }
+.archive-match { margin-top: 14px; }
+.archive-match p, .archive-match ul { margin-bottom: 6px; }
+.archive-match ul { padding-left: 20px; }
 :focus-visible{outline:3px solid #b65c1b;outline-offset:4px}
 html{scroll-padding-top:185px}
 [id]{scroll-margin-top:185px}

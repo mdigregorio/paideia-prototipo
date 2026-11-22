@@ -23,12 +23,13 @@ Le 37 pagine usano HTML, CSS e JavaScript senza dipendenze. Si può aprire `inde
 
 `data/catalogo-formazione.json` è una copia integrale del catalogo istituzionale consultato il 21 novembre 2026: **60 edizioni e 201 moduli**. Non è un collegamento al database futuro.
 
-Il comando di preparazione genera due file: `assets/catalogo-edizioni.js` (13.287 byte) e `assets/catalogo-corsi.js` (61.652 byte). Solo il secondo viene caricato quando si apre la vista Corsi e interventi. Il catalogo iniziale precedente era di 75.729 byte. Nessun caricamento del catalogo nelle altre pagine.
+Il comando di preparazione genera due file: `assets/catalogo-edizioni.js` (13.287 byte) e `assets/catalogo-corsi.js` (61.652 byte). I corsi vengono caricati quando si apre la relativa vista o si esegue una ricerca nell’archivio. Il catalogo iniziale precedente era di 75.729 byte. Nessun caricamento del catalogo nelle altre pagine.
 
 - **Edizioni**: filtri Iniziativa e Anno.
 - **Corsi e interventi**: filtri Iniziativa ed Edizione.
 - 24 risultati iniziali, poi «Mostra altre voci».
-- Collegamenti diretti con `iniziativa`, `vista`, `anno` o `edizione`.
+- Ricerca per docente, relatore, titolo o argomento, combinata con i filtri della vista. In Edizioni sono ricercabili anche i corsi e gli interventi collegati.
+- Collegamenti diretti con `iniziativa`, `vista`, `anno`, `edizione` e `q` per il testo della ricerca.
 - Dati mancanti espliciti e indicazione «Da verificare» conservata. Un titolo nullo viene mostrato come «Titolo non disponibile».
 - Le cinque edizioni e i sei interventi delle altre iniziative sono distinti dai 60/201 record formativi; senza filtri si vedono quindi 65 edizioni o 207 corsi/interventi.
 

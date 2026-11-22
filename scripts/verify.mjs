@@ -96,17 +96,21 @@ class Element{
  remove(){}
  click(){this.listeners.click?.({target:this});}
  change(){this.listeners.change?.({target:this});}
+ input(){this.listeners.input?.({target:this});}
+ focus(){this.focused=true;}
 }
 const archiveCode=await read('assets/archive.js');
 const coursesCode=await read('assets/catalogo-corsi.js');
 const editionsCode=await read('assets/catalogo-edizioni.js');
 const flush=()=>new Promise(resolve=>setImmediate(resolve));
 function fixture(search=''){
- const controls=Object.fromEntries(['f-iniziativa','f-secondario','f-secondario-label','archive-results','archive-count','archive-more','archive-retry'].map(id=>[id,new Element()]));
+ const controls=Object.fromEntries(['f-iniziativa','f-secondario','f-secondario-label','f-ricerca','archive-search-clear','archive-results','archive-count','archive-more','archive-retry'].map(id=>[id,new Element()]));
  const buttons=['edizioni','interventi'].map(view=>{const b=new Element();b.dataset.view=view;return b;});
  const archive=new Element();archive.querySelector=s=>controls[s.slice(1)];archive.querySelectorAll=()=>buttons;
  const requests=[];
- const sandbox={window:{},URL,URLSearchParams,Intl,Date,Map,Set,Object,location:{href:'https://example.test/archivio.html'+search,search},history:{replaceState(){}},document:{currentScript:{src:'https://example.test/assets/archive.js'},querySelector:()=>archive,createElement:()=>new Element(),head:{append:s=>requests.push(s)}}};
+ const location={href:'https://example.test/archivio.html'+search,search};
+ const history={replaceState(_data,_title,url){location.href=url.href;location.search=url.search;}};
+ const sandbox={window:{},URL,URLSearchParams,Intl,Date,Map,Set,Object,location,history,document:{currentScript:{src:'https://example.test/assets/archive.js'},querySelector:()=>archive,createElement:()=>new Element(),head:{append:s=>requests.push(s)}}};
  vm.createContext(sandbox);vm.runInContext(editionsCode,sandbox);vm.runInContext(archiveCode,sandbox);
  return {controls,buttons,requests,sandbox,load:async()=>{vm.runInContext(coursesCode,sandbox);requests.at(-1).onload();await flush();}};
 }
@@ -132,6 +136,46 @@ checks.push('Corsi: 201+6 voci, filtri iniziativa+edizione, una sola richiesta d
 f=fixture('?iniziativa=scuola&anno=2025');assert(f.controls['archive-count'].textContent.startsWith('1 '));
 f=fixture('?vista=interventi&iniziativa=scuola&edizione=scuola-2026-tortorella');await f.load();assert(f.controls['archive-count'].textContent.startsWith('6 '));
 checks.push('Filtri preselezionati funzionanti nei collegamenti diretti');
+f=fixture('?iniziativa=scuola&anno=2026');
+const searchInput=f.controls['f-ricerca'];
+searchInput.value='felice addeo';
+searchInput.input();
+assert.equal(f.requests.length,1);
+await f.load();
+assert(f.controls['archive-count'].textContent.startsWith('1 '));
+assert(f.controls['archive-results'].innerHTML.includes('Analisi multivariata dei dati'));
+assert(f.controls['archive-results'].innerHTML.includes('Felice Addeo'));
+assert(f.controls['archive-results'].innerHTML.includes('edizione=scuola-2026-tortorella'));
+searchInput.value='web survey';
+searchInput.input();
+assert(f.controls['archive-count'].textContent.startsWith('0 '));
+f.controls['f-secondario'].value='2025';
+f.controls['f-secondario'].change();
+assert(f.controls['archive-count'].textContent.startsWith('1 '));
+assert(f.controls['archive-results'].innerHTML.includes('Come condurre una web survey'));
+searchInput.value='Luigi Cimmino';
+searchInput.input();
+assert(f.controls['archive-count'].textContent.startsWith('0 '));
+assert.equal(f.controls['f-iniziativa'].value,'scuola');
+assert.equal(f.controls['f-secondario'].value,'2025');
+f.controls['archive-search-clear'].click();
+assert(f.controls['archive-count'].textContent.startsWith('1 '));
+assert.equal(searchInput.value,'');
+assert(searchInput.focused);
+assert(!new URL(f.sandbox.location.href).searchParams.has('q'));
+assert.equal(f.requests.length,1);
+checks.push('Ricerca per docente e argomento in Edizioni, combinata con iniziativa e anno e cancellabile');
+f=fixture('?vista=interventi&iniziativa=magistri&edizione=magistri-2026&q=IDENTITA');
+await f.load();
+assert(f.controls['archive-count'].textContent.startsWith('1 '));
+assert(f.controls['archive-results'].innerHTML.includes('Tempo e identità'));
+assert.equal(f.controls['f-secondario'].value,'magistri-2026');
+f.buttons[0].click();
+assert(f.controls['archive-count'].textContent.startsWith('1 '));
+assert.equal(f.controls['f-ricerca'].value,'IDENTITA');
+assert.equal(f.controls['f-iniziativa'].value,'magistri');
+assert.equal(new URL(f.sandbox.location.href).searchParams.get('q'),'IDENTITA');
+checks.push('Ricerca senza distinzione di accenti o maiuscole, mantenuta al cambio di vista');
 f=fixture();f.buttons[1].click();f.buttons[0].click();await f.load();assert(f.controls['archive-count'].textContent.startsWith('65 '));
 checks.push('Un caricamento lento non sovrascrive la vista scelta successivamente');
 f=fixture();f.buttons[1].click();f.requests[0].onerror();await flush();assert.equal(f.controls['archive-retry'].hidden,false);f.controls['archive-retry'].click();await f.load();assert(f.controls['archive-count'].textContent.startsWith('207 '));
